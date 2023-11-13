@@ -37,3 +37,11 @@ const removeInDB = async () =>{
   console.log(removeData);
 }
 removeInDB();
+
+const readInDB = async () =>{
+  const InstaRemove = mongooes.model('reels', InstaSchema);
+  let removeData =await InstaRemove.find();
+  console.log(removeData);
+}
+readInDB();
+

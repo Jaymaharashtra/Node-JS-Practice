@@ -1,15 +1,22 @@
-const connectDb = require('./databaseConfig');
+const mongooes = require("mongoose");
+const url = "mongodb://localhost:27017/insta";
 
-// connectDb().then((item)=>{
-//     item.find().toArray().then((data)=>{
-//         console.log(data);
-//     })
-// })
+ mongooes.connect(url);
 
-const get =async () =>{
-    let con = await connectDb();
-    let result =await con.find().toArray();
-    console.log(result);
-}
+let InstaSchema = new mongooes.Schema({
+  c_name: String,
+  content: String,
+  followers: String,
+});
 
-get();
+const main = async () => {
+  const InstaModel = mongooes.model("reels", InstaSchema);
+  let data = new InstaModel({
+    c_name: "Pratham",
+    content: "Psychological",
+    followers: "2M",
+  });
+  let result = await data.save();
+  console.log(result);
+};
+main();
